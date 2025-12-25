@@ -1,7 +1,43 @@
 // Open Gift
 function openGift() {
-  document.getElementById("giftBox").style.transform =
-    "translate(-50%, -50%) scale(1)";
+  document.getElementById("giftBox").style.transform = "translate(-50%, -50%) scale(1)";
+  
+  // Play Music
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.3;
+  music.play();
+
+  // Confetti Burst
+  for (let i = 0; i < 30; i++) {
+    createConfetti();
+  }
+}
+
+function createConfetti() {
+  const confetti = document.createElement("div");
+  const emojis = ["❄️", "✨", "⭐", "🎁", "🎄"];
+  confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+  confetti.style.position = "fixed";
+  confetti.style.left = "50%";
+  confetti.style.top = "50%";
+  confetti.style.fontSize = "24px";
+  confetti.style.pointerEvents = "none";
+  confetti.style.zIndex = "1001";
+  
+  const destinationX = (Math.random() - 0.5) * 500;
+  const destinationY = (Math.random() - 0.5) * 500;
+
+  document.body.appendChild(confetti);
+
+  const anime = confetti.animate([
+    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+    { transform: `translate(${destinationX}px, ${destinationY}px) scale(0)`, opacity: 0 }
+  ], {
+    duration: 1500,
+    easing: 'ease-out'
+  });
+
+  anime.onfinish = () => confetti.remove();
 }
 
 // Close Gift
@@ -80,3 +116,93 @@ function sendWish() {
   wishInput.value = "";
 }
 
+
+// Cursor Follower element create karein
+const follower = document.createElement("div");
+follower.className = "cursor-follower";
+document.body.appendChild(follower);
+
+document.addEventListener("mousemove", (e) => {
+  // Glow circle position
+  follower.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+
+  // Sparkles generate karein (har thodi doori par)
+  createSparkle(e.pageX, e.pageY);
+});
+
+function createSparkle(x, y) {
+  const sparkle = document.createElement("div");
+  sparkle.className = "sparkle";
+  
+  // Random size
+  const size = Math.random() * 8 + 2;
+  sparkle.style.width = size + "px";
+  sparkle.style.height = size + "px";
+  
+  // Position
+  sparkle.style.left = x + "px";
+  sparkle.style.top = y + "px";
+
+  // Random direction movement
+  const destinationX = x + (Math.random() - 0.5) * 50;
+  const destinationY = y + (Math.random() - 0.5) * 50;
+
+  document.body.appendChild(sparkle);
+
+  const animation = sparkle.animate([
+    { transform: `translate(0, 0) scale(1)`, opacity: 1 },
+    { transform: `translate(${destinationX - x}px, ${destinationY - y}px) scale(0)`, opacity: 0 }
+  ], {
+    duration: 1000 + Math.random() * 1000,
+    easing: 'cubic-bezier(0, .5, .5, 1)'
+  });
+
+  animation.onfinish = () => sparkle.remove();
+}
+
+function triggerSurprise() {
+  const container = document.getElementById("fireworks-container");
+  const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#ffffff"];
+
+  // 15 firework bursts ek saath
+  for (let i = 0; i < 15; i++) {
+    setTimeout(() => {
+      createFirework(
+        Math.random() * window.innerWidth,
+        Math.random() * window.innerHeight,
+        colors[Math.floor(Math.random() * colors.length)]
+      );
+    }, i * 100);
+  }
+}
+
+function createFirework(x, y, color) {
+  const container = document.getElementById("fireworks-container");
+  
+  // 30 particles per burst
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement("div");
+    particle.className = "firework";
+    particle.style.backgroundColor = color;
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+    particle.style.boxShadow = `0 0 10px ${color}`;
+
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 100 + 50;
+    const destX = Math.cos(angle) * velocity;
+    const destY = Math.sin(angle) * velocity;
+
+    container.appendChild(particle);
+
+    const animation = particle.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${destX}px, ${destY}px) scale(0)`, opacity: 0 }
+    ], {
+      duration: 2000,
+      easing: 'ease-out'
+    });
+
+    animation.onfinish = () => particle.remove();
+  }
+}

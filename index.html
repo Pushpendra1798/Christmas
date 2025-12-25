@@ -11,52 +11,55 @@
 </head>
 <body>
 
+<div class="parallax-bg">
+    <div id="stars"></div>
+    <div class="mountains"></div>
+    <div class="forest"></div>
+</div>
 
-    
-  <div id="stars"></div>
+<ul class="lightrope">
+  <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></ li>
+</ul>
+<div id="stars"></div>
+<div id="snow"></div>
 
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Snow -->
-  <div id="snow"></div>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1 class="title">
-  <span class="highlight">A Holy </span><span class="night">Christmas  Night</span> ✨🎄
-</h1>
-    <h1 class="title">Merry Christmas 🎄</h1>
-    <p class="subtitle">May your life be filled with joy, peace & magic ✨</p>
-
+<section class="hero">
+  <h1 class="title">
+    <span class="highlight">A Holy </span><span class="night">Christmas Night</span> ✨🎄
+  </h1>
+  <p class="subtitle">May your life be filled with joy, peace & magic ✨</p>
+  <div class="button-group">
     <button class="btn" onclick="openGift()">🎁 Open Gift</button>
-  </section>
+  </div>
+</section>
 
-  <!-- Wishes Section -->
 <section class="wishes-section">
-  <h2>🙏 Send Your Wish to God</h2>
+  <h2>🙏 Send Your Wish</h2>
   <p>Write your prayer with faith & hope ✨</p>
-
   <textarea id="wishInput" placeholder="Dear God, I wish for..."></textarea>
-
   <button class="wish-btn" onclick="sendWish()">✨ Send Wish</button>
-
   <p id="wishMessage" class="wish-message"></p>
 </section>
 
 <div id="flyingWishes"></div>
 
-
-
-  <!-- Message Box -->
-  <div class="gift-box" id="giftBox">
+<div class="gift-box" id="giftBox">
+  <div class="gift-content">
     <p>🎉 Wishing you happiness, success & lots of smiles! 🎅</p>
     <button class="close-btn" onclick="closeGift()">Close</button>
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <p>Created with ❤️ by Pushpendra</p>
-  </footer>
+<footer>
+    <button class="surprise-btn" onclick="triggerSurprise()">✨ Surprise!</button>
 
-  <script src="script.js"></script>
+<div id="fireworks-container"></div>
+  <p>Created with ❤️ by Pushpendra</p>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

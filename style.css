@@ -14,9 +14,69 @@ body {
 }
 
 
+.lightrope {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  position: fixed; /* Screen ke top par chipki rahegi */
+  z-index: 100;
+  margin: -15px 0 0 0;
+  padding: 0;
+  pointer-events: none;
+  width: 100%;
+}
 
+.lightrope li {
+  position: relative;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 12px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 20px;
+  background: #00fbff;
+  box-shadow: 0px 4.66667px 24px 3px #00fbff;
+  animation-name: flash-1;
+  animation-duration: 2s;
+}
+
+/* Wire ka effect */
+.lightrope li:before {
+  content: "";
+  position: absolute;
+  background: #222;
+  width: 10px;
+  height: 9px;
+  border-radius: 3px;
+  top: -4px;
+  left: 1px;
+}
+
+/* Alag-alag colors aur timings */
+.lightrope li:nth-child(2n+1) { background: #ff2525; box-shadow: 0px 4.66667px 24px 3px #ff2525; animation-name: flash-2; animation-duration: 0.4s; }
+.lightrope li:nth-child(4n+2) { background: #f2ff00; box-shadow: 0px 4.66667px 24px 3px #f2ff00; animation-name: flash-3; animation-duration: 1.1s; }
+.lightrope li:nth-child(odd) { animation-duration: 1.8s; }
+.lightrope li:nth-child(3n) { animation-duration: 0.8s; }
+
+@keyframes flash-1 { 
+    0%, 100% { background: #00fbff; box-shadow: 0px 4.66667px 24px 3px #00fbff; } 
+    50% { background: rgba(0, 251, 255, 0.2); box-shadow: 0px 4.66667px 24px 3px rgba(0, 251, 255, 0.2); } 
+}
+@keyframes flash-2 { 
+    0%, 100% { background: #ff2525; box-shadow: 0px 4.66667px 24px 3px #ff2525; } 
+    50% { background: rgba(255, 37, 37, 0.2); box-shadow: 0px 4.66667px 24px 3px rgba(255, 37, 37, 0.2); } 
+}
+@keyframes flash-3 { 
+    0%, 100% { background: #f2ff00; box-shadow: 0px 4.66667px 24px 3px #f2ff00; } 
+    50% { background: rgba(242, 255, 0, 0.2); box-shadow: 0px 4.66667px 24px 3px rgba(242, 255, 0, 0.2); } 
+}
 
 /* Hero Section */
+
 .hero {
   height: 100vh;
   display: flex;
@@ -24,6 +84,49 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+/* Glass Effect for Gift Box */
+.gift-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
+  color: #16324f;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  width: 85%;
+  max-width: 450px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  border: 2px solid #ffd700;
+  z-index: 1000;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Floating Animation for Hero Text */
+.title {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1d2d;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4d4d;
+  border-radius: 10px;
 }
 
 .title {
@@ -62,21 +165,7 @@ body {
   transform: scale(1.1);
 }
 
-/* Gift Box */
-.gift-box {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  background: white;
-  color: #333;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  width: 80%;
-  max-width: 400px;
-  transition: 0.5s;
-}
+
 
 .gift-box p {
   font-size: 1.2rem;
@@ -128,18 +217,32 @@ footer {
   50% { opacity: 1; }
 }
 
+/* Better Snow Animation */
+@keyframes fall {
+  0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+  25% { transform: translateY(25vh) translateX(15px); }
+  50% { transform: translateY(50vh) translateX(-15px); }
+  75% { transform: translateY(75vh) translateX(15px); }
+  100% { transform: translateY(110vh) translateX(0); opacity: 0; }
+}
 
-/* Wishes Section */
+/* Fix for overlapping section */
 .wishes-section {
   position: relative;
   max-width: 500px;
-  margin: -120px auto 0;
+  margin: 50px auto; /* Changed from negative margin */
   padding: 30px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile responsive font sizing */
+@media (max-width: 600px) {
+  .title { font-size: 2.5rem; }
+  .wishes-section { width: 90%; }
 }
 
 .wishes-section h2 {
@@ -202,25 +305,47 @@ footer {
   bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 215, 0, 0.9); /* Golden background */
   color: #000;
-  padding: 10px 18px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  animation: flyToSky 4s ease-in forwards;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); /* Golden Glow */
+  white-space: nowrap;
+  animation: flyToSky 5s ease-in forwards;
 }
 
 @keyframes flyToSky {
   0% {
     transform: translate(-50%, 0) scale(1);
     opacity: 1;
+    filter: blur(0px);
   }
   100% {
-    transform: translate(-50%, -120vh) scale(0.5);
+    transform: translate(-50%, -120vh) scale(0.3);
     opacity: 0;
+    filter: blur(4px);
   }
 }
 
+
+.wish-btn {
+  background: #ffd700;
+  color: #000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
 
 .highlight {
   color: #7dd3fc;
@@ -239,4 +364,144 @@ footer {
 .title span:hover {
   transform: scale(1.05);
   filter: brightness(1.2);
+}
+
+
+/* Ek glowing circle jo mouse ko follow karega */
+.cursor-follower {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease-out;
+  box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0.2);
+  mix-blend-mode: screen;
+}
+
+/* Jab mouse chale toh chote sparkles nikle */
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff, 0 0 20px #ffd700;
+  animation: sparkle-fade 1s linear forwards;
+}
+
+@keyframes sparkle-fade {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+}
+
+/* Background Motion */
+.parallax-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top, #1e4d6b 0%, #0b1d2d 100%);
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Middle Layer: City/Forest Silhouette */
+.forest {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 300px;
+    background: url('https://www.transparenttextures.com/patterns/black-linen.png'), 
+                linear-gradient(to top, #050a10, transparent);
+    background-repeat: repeat-x;
+    opacity: 0.8;
+    animation: moveForest 60s linear infinite;
+}
+
+@keyframes moveForest {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+
+/* Content ko thoda "Floating" look dene ke liye */
+.hero {
+
+    width: 100%;
+    backdrop-filter: blur(2px);
+}
+
+/* Floating Surprise Button */
+.surprise-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  background: linear-gradient(45deg, #ff0000, #ff4d4d);
+  color: white;
+  border: 3px solid #ffd700;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1002;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.1); box-shadow: 0 0 30px #ffd700; }
+}
+
+/* Fireworks Styles */
+#fireworks-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.firework {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+/* Open Gift Button - Ab yeh bhi uchhalega! */
+.btn {
+  margin-top: 30px;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff4d4d, #ff0000);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+  
+  /* Surprise button wali bounce animation */
+  animation: bounce 2s infinite; 
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover karne par thoda aur effect */
+.btn:hover {
+  animation-play-state: paused; /* Hover par uchhalna ruk jayenge */
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 77, 77, 1);
+  background: linear-gradient(45deg, #ff0000, #ff4d4d);
+}
+
+/* Agar aapne pehle bounce animation nahi likhi hai, toh ise bhi copy karein */
+@keyframes bounce {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+  }
+  50% { 
+    transform: translateY(-15px) scale(1.05); 
+    box-shadow: 0 15px 25px rgba(255, 77, 77, 0.6);
+  }
 }
