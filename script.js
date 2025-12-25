@@ -206,3 +206,14 @@ function createFirework(x, y, color) {
     animation.onfinish = () => particle.remove();
   }
 }
+
+/* Poori website se scrollbar hide karne ke liye */
+html, body {
+  scrollbar-width: none; /* Firefox ke liye */
+  -ms-overflow-style: none; /* Internet Explorer/Edge ke liye */
+}
+
+/* Chrome, Safari aur Opera ke liye */
+::-webkit-scrollbar {
+  display: none;
+}
