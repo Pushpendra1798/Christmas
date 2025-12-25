@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: linear-gradient(to bottom, #0b1d2d, #16324f, #1e4d6b);
+  color: white;
+}
+
+
+
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 4rem;
+  color: #ffd700;
+  letter-spacing: 2px;
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #e0f2fe;
+  letter-spacing: 1px;
+  margin-top: 12px;
+  opacity: 0.9;
+}
+
+
+.btn {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+  transition: transform 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* Gift Box */
+.gift-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: white;
+  color: #333;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  transition: 0.5s;
+}
+
+.gift-box p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  padding: 10px 20px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  position: relative;   /* ✅ scroll ke sath move kare */
+  margin-top: 80px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+
+/* Glow Animation */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #ff4d4d;
+  }
+  to {
+    text-shadow: 0 0 30px #ff4d4d;
+  }
+}
+
+
+/* Stars */
+#stars span {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+
+/* Wishes Section */
+.wishes-section {
+  position: relative;
+  max-width: 500px;
+  margin: -120px auto 0;
+  padding: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.wishes-section h2 {
+  font-family: 'Pacifico', cursive;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.wishes-section p {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: rgb(229, 229, 229);
+}
+
+#wishInput {
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  background-color: rgb(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.wish-btn {
+  background: #ffd700;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.3s;
+}
+
+.wish-btn:hover {
+  transform: scale(1.1);
+}
+
+.wish-message {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #90ee90;
+}
+
+/* Flying Wish */
+#flyingWishes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.flying-wish {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  color: #000;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  animation: flyToSky 4s ease-in forwards;
+}
+
+@keyframes flyToSky {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -120vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+
+.highlight {
+  color: #7dd3fc;
+  text-shadow: 0 0 10px rgba(125, 211, 252, 0.8);
+}
+
+.night {
+  color: #7dd3fc;
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.8);
+}
+
+.title span {
+  transition: 0.3s ease;
+}
+
+.title span:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
